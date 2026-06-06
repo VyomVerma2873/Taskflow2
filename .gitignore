@@ -2,7 +2,7 @@
 **/target/
 *.class
 *.db
-.mvn/
+
 
 # Node/React Ignores
 **/node_modules/
