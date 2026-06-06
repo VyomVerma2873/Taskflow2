@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: taskflow-backend
+    runtime: java
+    rootDirectory: backend
+    buildCommand: mvn clean package -DskipTests
+    startCommand: java -jar target/taskflow-0.0.1-SNAPSHOT.jar
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: DATABASE_USER
+        sync: false
+      - key: DATABASE_PASSWORD
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: HF_API_KEY
+        sync: false
+      - key: HF_API_URL
+        value: https://router.huggingface.co/v1/chat/completions
+      - key: HF_MODEL
+        value: meta-llama/Llama-3.3-70B-Instruct
