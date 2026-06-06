@@ -48,9 +48,9 @@ const TaskForm = ({ task, onSubmit, onCancel }) => {
     try {
       const result = await generateTaskDetails(title);
       
-      setDescription(result.description);
-      setPriority(result.suggestedPriority);
-      setEstimatedTime(result.estimatedTime);
+      setDescription(result.description || `Task details for: ${title}.`);
+      setPriority(result.suggestedPriority || 'MEDIUM');
+      setEstimatedTime(result.estimatedTime || '1 hour');
 
       setAiMessage({
         type: 'success',
@@ -58,6 +58,11 @@ const TaskForm = ({ task, onSubmit, onCancel }) => {
       });
     } catch (err) {
       console.error(err);
+      // Fallback: Populate mock values directly in the frontend on failure!
+      setDescription(`Task Description for "${title}":\n- Plan and prototype the task requirements.\n- Core implementation and styling tweaks.\n- Verification and testing.`);
+      setPriority('HIGH');
+      setEstimatedTime('2 hours');
+
       setAiMessage({
         type: 'error',
         text: 'Failed to connect to Gemini API. Using locally generated task framework.',

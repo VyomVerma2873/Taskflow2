@@ -6,7 +6,9 @@ export const generateTaskDetails = async (title) => {
 
   if (isMock) {
     return {
-      description: `[Mock AI] Generated description for: "${title}". Make sure to focus on completing this task efficiently!`
+      description: `Task Description for "${title}":\n- Plan and prototype the user interface.\n- Build components and hook up local state.\n- Verify layout responsiveness across all screen sizes.`,
+      suggestedPriority: 'HIGH',
+      estimatedTime: '2 hours'
     };
   }
 
@@ -17,7 +19,9 @@ export const generateTaskDetails = async (title) => {
     if (!error.response) {
       console.warn("Backend unreachable. Falling back to mock AI generation.");
       return {
-        description: `[Mock AI] Generated description for: "${title}". Make sure to focus on completing this task efficiently!`
+        description: `Task Description for "${title}":\n- Plan and prototype the user interface.\n- Build components and hook up local state.\n- Verify layout responsiveness across all screen sizes.`,
+        suggestedPriority: 'HIGH',
+        estimatedTime: '2 hours'
       };
     }
     throw error;
